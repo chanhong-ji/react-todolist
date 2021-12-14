@@ -1,8 +1,7 @@
 import React from "react";
-import Router from "./Router";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import { darkTheme } from "./theme";
-import { ReactQueryDevtools } from "react-query/devtools";
+import Todo from "./components/Todo";
 
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;800&family=Rubik:wght@500&display=swap');
@@ -74,8 +73,7 @@ function App() {
     <>
       <ThemeProvider theme={darkTheme}>
         <GlobalStyle />
-        <Router />
-        <ReactQueryDevtools />
+        <Todo />
       </ThemeProvider>
     </>
   );
