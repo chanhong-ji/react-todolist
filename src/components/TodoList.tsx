@@ -16,7 +16,7 @@ interface ITodo {
   category: "TO_DO" | "DOING" | "DONE";
 }
 
-const Todo = () => {
+const TodoList = () => {
   const { register, handleSubmit, setValue } = useForm<IForm>();
   const [todos, setTodos] = useRecoilState<ITodo[]>(todoState);
   function onSubmit({ todo }: IForm) {
@@ -48,4 +48,4 @@ const Todo = () => {
   );
 };
 
-export default Todo;
+export default TodoList;
