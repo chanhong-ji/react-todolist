@@ -11,8 +11,8 @@ const CreateTodo = () => {
   const setTodos = useSetRecoilState(todoState);
   function onSubmit({ todo }: IForm) {
     setTodos((prev) => [
-      { text: todo, id: Date.now(), category: "TO_DO" },
       ...prev,
+      { text: todo, id: Date.now(), category: "TO_DO" },
     ]);
     setValue("todo", "");
   }
