@@ -12,19 +12,20 @@ export const isDarkAtom = atom({
 });
 
 export const todoState = atom<ITodo[]>({
-  key: "Todos",
+  key: "todoState",
   default: [],
+});
+
+export const categoryState = atom({
+  key: "categoryState",
+  default: "TO_DO",
 });
 
 export const todoSelector = selector({
   key: "todoSelector",
   get: ({ get }) => {
     const todos = get(todoState);
-    const result = [
-      todos.filter((todo) => todo.category === "TO_DO"),
-      todos.filter((todo) => todo.category === "DOING"),
-      todos.filter((todo) => todo.category === "DONE"),
-    ];
-    return result;
+    const category = get(categoryState);
+    return todos.filter((todo) => todo.category === category);
   },
 });
