@@ -1,11 +1,5 @@
 import { atom, selector } from "recoil";
 
-const savedCategories = localStorage.getItem("category");
-const parsedCategories = savedCategories ? JSON.parse(savedCategories) : [];
-
-const savedTodos = localStorage.getItem("todos");
-const parsedTodos = savedTodos ? JSON.parse(savedTodos) : [];
-
 export interface ITodo {
   text: string;
   id: number;
@@ -25,7 +19,7 @@ export enum Categories {
 
 export const todoState = atom<ITodo[]>({
   key: "todoState",
-  default: parsedTodos,
+  default: JSON.parse(localStorage.getItem("todos") || "[]"),
 });
 
 export const categoryState = atom<Categories>({
@@ -42,7 +36,7 @@ export const todoSelector = selector({
   },
 });
 
-export const customCategory = atom<string[]>({
+export const customCategoryState = atom<string[]>({
   key: "customCategory",
-  default: parsedCategories,
+  default: JSON.parse(localStorage.getItem("categories") || "[]"),
 });
