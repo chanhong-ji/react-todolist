@@ -1,22 +1,21 @@
 import { useForm } from "react-hook-form";
 import { useRecoilState } from "recoil";
-import { Categories, customCategoryState } from "../atoms";
+import { CategoriesState } from "../atoms";
 
 interface IForm {
   category: string;
 }
 
-const CreateCategory = () => {
+const CategoryForm = () => {
   const { register, handleSubmit, setValue, setError, formState } =
     useForm<IForm>();
-  const [customCategories, setCustomCategories] =
-    useRecoilState(customCategoryState);
+  const [categories, setCategories] = useRecoilState(CategoriesState);
 
   function onSubmit({ category }: IForm) {
-    if (customCategories.includes(category) || category in Categories) {
+    if (categories.includes(category)) {
       setError("category", { message: "already exist" }, { shouldFocus: true });
     } else {
-      setCustomCategories((prev) => [...prev, category]);
+      setCategories((prev) => [...prev, category]);
     }
     setValue("category", "");
   }
@@ -32,4 +31,4 @@ const CreateCategory = () => {
   );
 };
 
-export default CreateCategory;
+export default CategoryForm;

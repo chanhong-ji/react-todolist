@@ -3,7 +3,7 @@ import { atom, selector } from "recoil";
 export interface ITodo {
   text: string;
   id: number;
-  category: Categories;
+  category: string;
 }
 
 export const isDarkAtom = atom({
@@ -11,20 +11,14 @@ export const isDarkAtom = atom({
   default: true,
 });
 
-export enum Categories {
-  "TO_DO" = "TO_DO",
-  "DOING" = "DOING",
-  "DONE" = "DONE",
-}
-
 export const todoState = atom<ITodo[]>({
   key: "todoState",
   default: JSON.parse(localStorage.getItem("todos") || "[]"),
 });
 
-export const categoryState = atom<Categories>({
+export const categoryState = atom({
   key: "categoryState",
-  default: Categories.TO_DO,
+  default: "TO_DO",
 });
 
 export const todoSelector = selector({
@@ -36,7 +30,7 @@ export const todoSelector = selector({
   },
 });
 
-export const customCategoryState = atom<string[]>({
-  key: "customCategory",
+export const CategoriesState = atom<string[]>({
+  key: "categoriesState",
   default: JSON.parse(localStorage.getItem("categories") || "[]"),
 });

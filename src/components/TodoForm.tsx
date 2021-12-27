@@ -6,7 +6,7 @@ interface IForm {
   todo: string;
 }
 
-const CreateTodo = () => {
+const TodoForm = () => {
   const { register, handleSubmit, setValue } = useForm<IForm>();
   const setTodos = useSetRecoilState(todoState);
   const category = useRecoilValue(categoryState);
@@ -29,4 +29,4 @@ const CreateTodo = () => {
   );
 };
 
-export default CreateTodo;
+export default TodoForm;
